@@ -1,0 +1,261 @@
+
+
+<div class="promo-bar">
+  <div class="promo-content">
+      <img src="https://i.postimg.cc/4xF8kZrk/OFERTA.png" alt="promo-image" class="promo-image">
+      <span class="promo-text">¡Promoción! 15% de descuento en tu primera compra. Aplica en artículos seleccionados.</span>
+      <img src="https://i.postimg.cc/sxnCWq0Y/487417442-1186450423142233-3135110530623009074-n-removebg-preview.png" alt="promo-image" class="promo-image">
+      
+  </div>
+</div>
+
+
+
+
+
+
+
+<header class="bird-box">
+  <div class="back-bird"></div>
+  <div class="logo"></div>
+  <div class="fore-bird"></div>
+</header>
+
+
+<ngb-carousel class="mimo" [interval]="3000" [pauseOnHover]="false" [showNavigationArrows]="true" [showNavigationIndicators]="true">
+  <ng-template ngbSlide>
+    <img src="https://i.postimg.cc/NjBqDZVv/papers-co-hs01-kpop-girl-jennie-channel-blackpink-3840x2400.jpg" 
+         alt="Chania" 
+         class="d-block w-100 zoom-img">
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="https://i.postimg.cc/fTxQxM8v/papers-co-hs06-girl-kpop-snsd-taeyeon-pink-3840x2400.jpg" 
+         alt="Chania" 
+         class="d-block w-100 zoom-img">
+  </ng-template>
+  <ng-template ngbSlide>
+    <img src="https://i.postimg.cc/Y2LHC6gZ/papers-co-hu21-girl-kpop-lisa-blackpink-3840x2400.jpg" 
+         alt="Flower" 
+         class="d-block w-100 zoom-img">
+  </ng-template>
+</ngb-carousel>
+
+
+
+
+
+<!-- Desktop Carousel: Muestra 3 items por slide -->
+<div class="menu-carousel desktop-carousel d-none d-md-block">
+  <ngb-carousel [interval]="3000" [pauseOnHover]="true" [wrap]="true">
+    <ng-template ngbSlide>
+      <div class="desktop-slide">
+        <!-- Card 1 -->
+        <a [routerLink]="'/inicio'">
+          <div class="category-card" style="background: linear-gradient(to right, #f3e5f5, #ba68c8);">
+            <img src="https://i.postimg.cc/Z5dmCT6Z/inicio.png" alt="Inicio" class="option-image">
+            <h5>Inicio</h5>
+            <p>Descubre lo último en tendencias</p>
+          </div>
+        </a>
+        <!-- Card 2 -->
+        <a [routerLink]="'/ropa'">
+          <div class="category-card" style="background: linear-gradient(to right, #f8bbd0, #f06292);">
+            <img src="https://i.postimg.cc/zfw1F0dc/ropa.png" alt="Ropa" class="option-image">
+            <h5>Ropa</h5>
+            <p>Moda para cada ocasión</p>
+          </div>
+        </a>
+        <!-- Card 3 -->
+        <a [routerLink]="'/maquillaje'" >
+          <div class="category-card" style="background: linear-gradient(to right, #e1bee7, #ce93d8);">
+            <img src="https://i.postimg.cc/L67R9qYN/maquillaje.png" alt="Maquillaje" class="option-image">
+            <h5>Maquillaje</h5>
+            <p>Resalta tu belleza natural</p>
+          </div>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="desktop-slide">
+        <!-- Card 4 -->
+        <a [routerLink]="'/hogar'" >
+          <div class="category-card" style="background: linear-gradient(to right, #d1c4e9, #9575cd);">
+            <img src="https://i.postimg.cc/JhCLX9QX/hogar.png" alt="Hogar" class="option-image">
+            <h5>Hogar</h5>
+            <p>Detalles que inspiran</p>
+          </div>
+        </a>
+        <!-- Card 5 -->
+        <a [routerLink]="'/joyeria'" >
+          <div class="category-card" style="background: linear-gradient(to right, #ce93d8, #ab47bc);">
+            <img src="https://i.postimg.cc/dQ5wfNqM/joyeria.png" alt="Joyería" class="option-image">
+            <h5>Joyería</h5>
+            <p>Accesorios únicos y elegantes</p>
+          </div>
+        </a>
+        <!-- Card 6 -->
+        <a [routerLink]="'/zapatos'" >
+          <div class="category-card" style="background: linear-gradient(to right, #f3e5f5, #ba68c8);">
+            <img src="https://i.postimg.cc/RhZ9FKLb/zapatos.png" alt="Zapatos" class="option-image">
+            <h5>Zapatos</h5>
+            <p>Comodidad con estilo</p>
+          </div>
+        </a>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="desktop-slide">
+        <!-- Card 7 -->
+        <a [routerLink]="'/accesorios'">
+          <div class="category-card" style="background: linear-gradient(to right, #f8bbd0, #f06292);">
+            <img src="https://i.postimg.cc/VvZwbv7s/accesorios.png" alt="Accesorios" class="option-image">
+            <h5>Accesorios</h5>
+            <p>El toque final perfecto</p>
+          </div>
+        </a>
+        <!-- Agrega más cards si las tienes -->
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<!-- Mobile Carousel: Muestra 1 item por slide -->
+<div class="menu-carousel mobile-carousel d-block d-md-none">
+  <ngb-carousel [interval]="3000" [pauseOnHover]="true" [wrap]="true">
+    <ng-template ngbSlide>
+      <a [routerLink]="'/inicio'" >
+        <div class="category-card" style="background: linear-gradient(to right, #f3e5f5, #ba68c8);">
+          <img src="https://i.postimg.cc/Z5dmCT6Z/inicio.png" alt="Inicio" class="option-image">
+          <h5>Inicio</h5>
+          <p>Descubre lo último en tendencias</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/ropa'" >
+        <div class="category-card" style="background: linear-gradient(to right, #f8bbd0, #f06292);">
+          <img src="https://i.postimg.cc/zfw1F0dc/ropa.png" alt="Ropa" class="option-image">
+          <h5>Ropa</h5>
+          <p>Moda para cada ocasión</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/maquillaje'">
+        <div class="category-card" style="background: linear-gradient(to right, #e1bee7, #ce93d8);">
+          <img src="https://i.postimg.cc/L67R9qYN/maquillaje.png" alt="Maquillaje" class="option-image">
+          <h5>Maquillaje</h5>
+          <p>Resalta tu belleza natural</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/hogar'" >
+        <div class="category-card" style="background: linear-gradient(to right, #d1c4e9, #9575cd);">
+          <img src="https://i.postimg.cc/JhCLX9QX/hogar.png" alt="Hogar" class="option-image">
+          <h5>Hogar</h5>
+          <p>Detalles que inspiran</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/joyeria'" >
+        <div class="category-card" style="background: linear-gradient(to right, #ce93d8, #ab47bc);">
+          <img src="https://i.postimg.cc/dQ5wfNqM/joyeria.png" alt="Joyería" class="option-image">
+          <h5>Joyería</h5>
+          <p>Accesorios únicos y elegantes</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/zapatos'" >
+        <div class="category-card" style="background: linear-gradient(to right, #f3e5f5, #ba68c8);">
+          <img src="https://i.postimg.cc/RhZ9FKLb/zapatos.png" alt="Zapatos" class="option-image">
+          <h5>Zapatos</h5>
+          <p>Comodidad con estilo</p>
+        </div>
+      </a>
+    </ng-template>
+    <ng-template ngbSlide>
+      <a [routerLink]="'/accesorios'" >
+        <div class="category-card" style="background: linear-gradient(to right, #f8bbd0, #f06292);">
+          <img src="https://i.postimg.cc/VvZwbv7s/accesorios.png" alt="Accesorios" class="option-image">
+          <h5>Accesorios</h5>
+          <p>El toque final perfecto</p>
+        </div>
+      </a>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="content">
+
+    
+  
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- COLECCIONES -->
+      <div class="footer-column">
+        <h4>COLECCIONES</h4>
+        <ul>
+          <li>Mujer</li>
+          <li>Hombre</li>
+          <li>Bebé</li>
+          <li>Niños</li>
+          <li>Sport</li>
+        </ul>
+      </div>
+      <!-- INFORMACIÓN CORPORATIVA -->
+      <div class="footer-column">
+        <h4>INFORMACIÓN CORPORATIVA</h4>
+        <ul>
+          <li>Trabajar en DELUXE-MODA</li>
+          <li>Acerca del grupo DELUXE</li>
+          <li>Sostenibilidad</li>
+          <li>Prensa</li>
+          <li>Relación con inversionistas</li>
+          <li>Política empresarial</li>
+        </ul>
+        <div class="security-patch">
+          image security Patch
+        </div>
+      </div>
+      <!-- AYUDA -->
+      <div class="footer-column">
+        <h4>AYUDA</h4>
+        <ul>
+          <li>Servicio al cliente</li>
+          <li>Mi cuenta</li>
+          <li>Nuestras tiendas</li>
+          <li>Términos y condiciones</li>
+          <li>Aviso de privacidad</li>
+          <li>Contacto</li>
+          <li>Tarjetas de regalo</li>
+          <li>Libro de reclamaciones</li>
+          <li>Configuración de cookies</li>
+        </ul>
+      </div>
+      <!-- Fashion News -->
+      <div class="footer-column">
+        <h4>Fashion News</h4>
+        <p>Suscríbete a nuestro Fashion News</p>
+        <a href="#" class="btn">¡Únete ahora!</a>
+        <a href="#" class="more-link">CONOCE MÁS</a>
+      </div>
+    </div>
+  </footer>
+  
+</section>

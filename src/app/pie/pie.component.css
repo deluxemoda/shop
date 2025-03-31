@@ -1,0 +1,106 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Pie de página */
+.footer {
+  position: fixed;
+  /* Se mantiene fijo en la parte inferior */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f3f6fd;
+  /* Color de respaldo */
+  background-image: url('https://wallpapers.com/images/hd/blue-birthday-background-1920-x-1080-f0okw9jbilnw2h7k.jpg');
+  background-repeat: repeat;
+  background-size: 200px auto;
+  /* Tamaño reducido para mantener la nitidez */
+  background-position: 0 0;
+  backdrop-filter: blur(10px);
+ 
+  height: 45px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+  /* Animación para mover el fondo horizontalmente */
+  animation: slideBackground 9s linear infinite;
+}
+
+/* Animación del fondo */
+@keyframes slideBackground {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -200px 0;
+  }
+}
+
+/* Contenedor para el texto en movimiento */
+.scrolling-text {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Animación del texto */
+.scrolling-text span {
+  display: inline-block;
+  font-size: 24px;
+  color: #ffffff;
+  animation: scrollText 40s linear infinite;
+}
+
+/* Animación para el texto */
+@keyframes scrollText {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+
+
+
+@media (max-width: 600px) {
+  .footer-content {
+    font-size: 24px;
+    display: flex;
+    justify-content: flex-end;  /* Alinea el contenido a la derecha */
+    align-items: center;
+    padding-right: 15px;        /* Ajusta según necesites */
+  }
+  .scrolling-text {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .scrolling-text span {
+    display: inline-block;
+    animation: scrollTextMobile 20s linear infinite;
+  }
+}
+
+/* Animación para móviles: comienza desde el margen derecho */
+@keyframes scrollTextMobile {
+  0% {
+    transform: translateX(80%);  /* Menos desplazado, el texto ya es visible parcialmente */
+  }
+  0% {
+    transform: translateX(70%);  /* Comienza a moverse hacia la izquierda más rápido */
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Online</title>
+ 
+</head>
+<body>
+  <div class="promo-bar">
+    <div class="promo-content">
+        <img src="https://i.postimg.cc/4xF8kZrk/OFERTA.png" alt="promo-image" class="promo-image">
+        <span class="promo-text">¡Promoción! 15% de descuento en tu primera compra. Aplica en artículos seleccionados.</span>
+        <img src="https://i.postimg.cc/sxnCWq0Y/487417442-1186450423142233-3135110530623009074-n-removebg-preview.png" alt="promo-image" class="promo-image">
+        
+    </div>
+</div>
+  <!-- Notificación -->
+  <div class="notification" *ngIf="notificationMessage">
+    {{ notificationMessage }}
+  </div>
+
+  <!-- Header -->
+  <header>
+    <!-- Botón hamburguesa, visible en pantallas pequeñas -->
+    <div class="hamburger-menu">
+      <img src="https://i.postimg.cc/G3y6FMHJ/List-Text-Menu-Numbers-String-Burger-icon-icons-com-67909.png" alt="Menú" (click)="toggleMenu()">
+    </div>
+
+    <!-- Menú principal (se oculta en móvil y se muestra al pulsar el botón) -->
+    <div class="menu" [ngClass]="{'active-menu': showMenu}">
+      <button *ngFor="let t of tipos"
+              [class.active]="filtroTipo === t.id"
+              (click)="setTipo(t.id); toggleMenu()">
+        <img [src]="t.foto" alt="{{ t.nombre }}" class="avatar"> <!-- Imagen circular -->
+        {{ t.nombre }} <!-- Nombre del tipo -->
+      </button>
+    </div>
+    
+    <!-- Ícono del carrito, ubicado siempre a la derecha -->
+    <div class="cart-icon" (click)="openCartModal()">
+      <span>{{ cartItemCount }}</span>
+      <img src="https://i.postimg.cc/qqFfvYRz/carrito.png" alt="Carrito">
+    </div>
+  </header>
+
+  <ngb-carousel class="contenedor"  class="contenedor"  style="height:300px; max-height:300px;"  [interval]="3000" [pauseOnHover]="false" [showNavigationArrows]="true" [showNavigationIndicators]="true">
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/1Rcms5sq/MAMA1.png" 
+         alt="Chania" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/qMJkRVvZ/MAMA2.png" 
+         alt="Chania" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/8kh5cmBs/MAMA3.png" 
+         alt="Flower" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/D0dyN7y1/MAMA4.png" 
+         alt="Flower" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/R0yF6PDJ/MAM5.png" 
+         alt="Flower" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    <ng-template ngbSlide>
+      <img src="https://i.postimg.cc/SRpxVnqy/MAM6.png" 
+         alt="Flower" 
+         class="d-block w-100 zoom-img">
+    </ng-template>
+    </ngb-carousel>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <div class="filters">
+      <select (change)="onCategoriaChange($event)">
+        <option value="">Todas las Categorías</option>
+        <option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.nombre }}
+        </option>
+      </select>
+      <select (change)="onTallaChange($event)">
+        <option value="">Todas las Tallas</option>
+        <option *ngFor="let t of tallas" [value]="t.id">
+          {{ t.nombre }}
+        </option>
+      </select>
+      <select (change)="onColorChange($event)">
+        <option value="">Todos los Colores</option>
+        <option *ngFor="let c of colores" [value]="c.id">
+          {{ c.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="products">
+      <!-- Se muestran los productos de la página actual usando el pipe slice -->
+      <div class="product-card" 
+           *ngFor="let prod of filteredProductos | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+        <img [src]="prod.urlimagen1" [alt]="prod.nombre" (click)="abrirModalProducto(prod)" class="product-image">
+        <h3>{{ prod.nombre }}</h3>
+       
+        <p><span class="precio-normal">${{ prod.precio.toFixed(2) }}</span></p>
+        <p><span class="descuento">{{ prod.descuento }}%</span></p>
+        <p>
+          <span class="precio-descuento">
+            ${{ (prod.precio - (prod.precio * prod.descuento / 100)).toFixed(2) }}
+          </span>
+        </p>
+        <p> {{ prod.estado }}</p>
+        <div *ngIf="prod.estado.toLowerCase() === 'disponible'">
+          <div class="quantity-controls">
+            <button (click)="decreaseQuantity(prod)">-</button>
+            <span>{{ prod.selectedQuantity }}</span>
+            <button (click)="increaseQuantity(prod)">+</button>
+          </div>
+          <button class="add-to-cart" (click)="addToCart(prod, prod.selectedQuantity!)">
+            <img src="https://i.postimg.cc/CMkG02v2/shopping-cart-add256-24821.png" alt="Agregar al carrito" class="add-to-cart-img" />
+          </button>
+        </div>
+        <div *ngIf="prod.estado.toLowerCase() !== 'disponible'">
+          <p>Producto no disponible</p>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!-- Controles de paginación: se muestran si hay más de 12 productos -->
+    <div *ngIf="filteredProductos.length > itemsPerPage" class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+    </div>
+  </div>
+
+  <!-- Modal del carrito -->
+  <div class="modal" *ngIf="showCartModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeCartModal()">&times;</span>
+      <h2>Carrito de Compras</h2>
+      <div id="cartItems">
+        <div class="cart-item" *ngFor="let item of carrito">
+          <p>
+            {{ item.nombre }} (-{{ item.descuento }}%): {{ item.precio.toFixed(2)  }} x {{ item.cantidad }} - 
+            ${{ (item.precio * item.cantidad).toFixed(2) }}
+          </p>
+          <img src="https://i.postimg.cc/9Mn163J7/favorite-favorite-favorite-favorite-insert-delete-delete-1473.png" alt="Eliminar" class="remove-item" (click)="removeFromCart(item.id)">
+
+        </div>
+      </div>
+      <div id="cartTotal">Total: ${{ cartTotal.toFixed(2) }}</div>
+      <a [href]="'https://wa.me/593980028110?text=' + whatsappMessage" 
+         target="_blank" class="whatsapp-btn">
+        Enviar pedido por WhatsApp
+      </a>
+    </div>
+  </div>
+  <div class="modal" *ngIf="showProductModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeProductModal()">&times;</span>
+      
+      <div class="modal-images">
+        <!-- Imagen 1 -->
+        <img [src]="selectedProduct?.urlimagen1" [alt]="selectedProduct?.nombre" class="modal-img" (click)="openImagePopup(selectedProduct?.urlimagen1)">
+        <!-- Imagen 2 -->
+        <img [src]="selectedProduct?.urlimagen2" [alt]="selectedProduct?.nombre" class="modal-img" (click)="openImagePopup(selectedProduct?.urlimagen2)">
+      </div>
+  
+      <div class="modal-info">
+        <h3>{{ selectedProduct?.nombre }}</h3>
+        <p class="product-desc">{{ selectedProduct?.descripcion }}</p>
+        <p *ngIf="selectedProduct">Precio normal: <span class="precio-normal">${{ selectedProduct.precio.toFixed(2) }}</span></p>
+       
+        <p>
+          Precio oferta: 
+          <span *ngIf="selectedProduct" class="precio-descuento">
+            ${{ (selectedProduct.precio - (selectedProduct.precio * selectedProduct.descuento / 100)).toFixed(2) }}
+          </span>
+        </p>
+        <p>Estado: {{ selectedProduct?.estado }}</p>
+        <div *ngIf="selectedProduct?.estado === 'disponible'">
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal para imagen ampliada -->
+<div class="image-popup" *ngIf="showImagePopup">
+  <div class="popup-content">
+    <!-- Botón para cerrar el pop-up -->
+    <span class="close" (click)="closeImagePopup()">&times;</span>
+    
+    <!-- Imagen ampliada -->
+    <img [src]="selectedImage" [alt]="selectedImage" class="popup-image">
+  </div>
+</div>
+
+
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/593980028110?text=Buen%20día,%20quiero%20comprar%20algo!"  target="_blank" class="whatsapp-float">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-icon">
+</a>
+
+
+
+
+
+
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- COLECCIONES -->
+      <div class="footer-column">
+        <h4>COLECCIONES</h4>
+        <ul>
+          <li>Mujer</li>
+          <li>Hombre</li>
+          <li>Bebé</li>
+          <li>Niños</li>
+          <li>Sport</li>
+        </ul>
+      </div>
+      <!-- INFORMACIÓN CORPORATIVA -->
+      <div class="footer-column">
+        <h4>INFORMACIÓN CORPORATIVA</h4>
+        <ul>
+          <li>Trabajar en DELUXE-MODA</li>
+          <li>Acerca del grupo DELUXE</li>
+          <li>Sostenibilidad</li>
+          <li>Prensa</li>
+          <li>Relación con inversionistas</li>
+          <li>Política empresarial</li>
+        </ul>
+        <div class="security-patch">
+          image security Patch
+        </div>
+      </div>
+      <!-- AYUDA -->
+      <div class="footer-column">
+        <h4>AYUDA</h4>
+        <ul>
+          <li>Servicio al cliente</li>
+          <li>Mi cuenta</li>
+          <li>Nuestras tiendas</li>
+          <li>Términos y condiciones</li>
+          <li>Aviso de privacidad</li>
+          <li>Contacto</li>
+          <li>Tarjetas de regalo</li>
+          <li>Libro de reclamaciones</li>
+          <li>Configuración de cookies</li>
+        </ul>
+      </div>
+      <!-- Fashion News -->
+      <div class="footer-column">
+        <h4>Fashion News</h4>
+        <p>Suscríbete a nuestro Fashion News</p>
+        <a href="#" class="btn">¡Únete ahora!</a>
+        <a href="#" class="more-link">CONOCE MÁS</a>
+      </div>
+    </div>
+  </footer>
+  
+</body>
+</html>
+
+

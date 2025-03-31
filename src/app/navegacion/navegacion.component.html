@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tu Proyecto</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <nav class="nav-primary sidebar" role="navigation">
+        <ul role="menubar">
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/inicio'" role="menuitem" (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/Z5dmCT6Z/inicio.png"
+                alt="Inicio"
+                class="menu-icon"
+              />
+              Inicio
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/ropa'" role="menuitem" (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/zfw1F0dc/ropa.png"
+                alt="Ropa"
+                class="menu-icon"
+              />
+              Ropa
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/maquillaje'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/L67R9qYN/maquillaje.png"
+                alt="Maquillaje"
+                class="menu-icon"
+              />
+              Maquillaje
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/hogar'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/JhCLX9QX/hogar.png"
+                alt="Hogar"
+                class="menu-icon"
+              />
+              Hogar
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/joyeria'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/dQ5wfNqM/joyeria.png"
+                alt="Joyeria"
+                class="menu-icon"
+              />
+              Joyeria
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/zapatos'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/RhZ9FKLb/zapatos.png"
+                alt="Zapatos"
+                class="menu-icon"
+              />
+              Zapatos
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/accesorios'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/VvZwbv7s/accesorios.png"
+                alt="Accesorios"
+                class="menu-icon"
+              />
+              Accesorios
+            </a>
+          </li>
+          <li
+            role="presentation"
+            routerLinkActive="seleccionado"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a [routerLink]="'/listarproducto'" role="menuitem"  (click)="cerrarMenu()">
+              <img
+                src="https://i.postimg.cc/zBj880Kg/adminproductos.png"
+                alt="crearproducto"
+                class="menu-icon"
+              />
+              ADMIN-PRODUCTOS
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+
+
+<div class="listar-productos">
+  <h2>Lista de Productos</h2>
+  
+  <!-- Botón para redirigir a Agregar Producto -->
+  <button class="btn-agregar" (click)="agregarProducto()">➕ Agregar Producto</button>
+  <div class="filtros">
+    <!-- Filtros de búsqueda y selección -->
+    <input 
+      type="text" 
+      [(ngModel)]="searchId" 
+      placeholder="Buscar por ID" 
+      (input)="filtrarProductos()">
+    
+    <select [(ngModel)]="filtroTipo" (change)="filtrarProductos()">
+      <option value="">Todos los Tipos</option>
+      <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</option>
+    </select>
+    
+    <select [(ngModel)]="filtroCategoria" (change)="filtrarProductos()">
+      <option value="">Todas las Categorías</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+    </select>
+    
+    <select [(ngModel)]="filtroTalla" (change)="filtrarProductos()">
+      <option value="">Todas las Tallas</option>
+      <option *ngFor="let talla of tallas" [value]="talla.id">{{ talla.nombre }}</option>
+    </select>
+    
+    <select [(ngModel)]="filtroColor" (change)="filtrarProductos()">
+      <option value="">Todos los Colores</option>
+      <option *ngFor="let color of colores" [value]="color.id">{{ color.nombre }}</option>
+    </select>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>Categoría</th>
+        <th>Talla</th>
+        <th>Color</th>
+        <th>Precio</th>
+        <th>Foto</th>
+        <th>Edit/Elim</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productosFiltrados">
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.tipo || producto.idtipo }}</td>
+        <td>{{ producto.categoria || producto.idcategoria }}</td>
+        <td>{{ producto.talla || producto.idtalla }}</td>
+        <td>{{ producto.color || producto.idcolor }}</td>
+        <td>{{ producto.precio | currency }}</td>
+        <td>
+          <!-- Imagen del producto con evento click para abrir el modal -->
+          <img 
+            [src]="producto.urlimagen1" 
+            alt="Imagen del producto" 
+            class="product-img"
+            (click)="abrirImagen(producto.urlimagen1)"
+          />
+        </td>
+        <td>
+          <button class="btn-editar" (click)="editarProducto(producto.id)"></button>
+          <button class="btn-eliminar" (click)="eliminarProducto(producto.id)"></button>
+        </td>
+      </tr>
+    </tbody>
+    
+    <!-- Modal para mostrar imagen en grande -->
+    <div class="modal-overlay" *ngIf="imagenSeleccionada" (click)="cerrarImagen()">
+      <div class="modal-content">
+        <span class="close-btn" (click)="cerrarImagen()">✖</span>
+        <img [src]="imagenSeleccionada" alt="Imagen ampliada">
+      </div>
+    </div>
+    
+  </table>
+</div>

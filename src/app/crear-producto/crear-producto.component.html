@@ -1,0 +1,72 @@
+<div class="crear-producto">
+  <h2>{{ productoId ? 'Editar Producto' : 'Crear Producto' }}</h2>
+  <form (ngSubmit)="guardarProducto()" #productoForm="ngForm">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" name="nombre" [(ngModel)]="nuevoProducto.nombre" required>
+    </div>
+    <div>
+      <label>Descripción:</label>
+      <textarea name="descripcion" [(ngModel)]="nuevoProducto.descripcion" required></textarea>
+    </div>
+    <div>
+      <label>Talla:</label>
+      <select name="idtalla" [(ngModel)]="nuevoProducto.idtalla" required>
+        <option value="" disabled selected>Seleccione una talla</option>
+        <option *ngFor="let talla of tallas" [value]="talla.id">{{ talla.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Categoría:</label>
+      <select name="idcategoria" [(ngModel)]="nuevoProducto.idcategoria" required>
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Tipo:</label>
+      <select name="idtipo" [(ngModel)]="nuevoProducto.idtipo" required>
+        <option value="" disabled selected>Seleccione un tipo</option>
+        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Estado:</label>
+      <input type="text" name="estado" [(ngModel)]="nuevoProducto.estado" required>
+    </div>
+    <div>
+      <label>Precio:</label>
+      <input type="number" name="precio" [(ngModel)]="nuevoProducto.precio" required>
+    </div>
+    <div>
+      <label>Descuento (%):</label>
+      <input type="number" name="descuento" [(ngModel)]="nuevoProducto.descuento">
+    </div>
+    <div>
+      <label>Color:</label>
+      <select name="idcolor" [(ngModel)]="nuevoProducto.idcolor" required>
+        <option value="" disabled selected>Seleccione un color</option>
+        <option *ngFor="let color of colores" [value]="color.id">{{ color.nombre }}</option>
+      </select>
+    </div>
+    <div>
+      <label>Cantidad:</label>
+      <input type="number" name="cantidad" [(ngModel)]="nuevoProducto.cantidad" required>
+    </div>
+    <div>
+      <label>Imagen 1 (URL):</label>
+      <input type="text" name="urlimagen1" [(ngModel)]="nuevoProducto.urlimagen1">
+    </div>
+    <div>
+      <label>Imagen 2 (URL):</label>
+      <input type="text" name="urlimagen2" [(ngModel)]="nuevoProducto.urlimagen2">
+    </div>
+    <button type="submit" [disabled]="!productoForm.form.valid">
+      {{ productoId ? 'Actualizar Registro' : 'Crear Producto' }}
+    </button>
+  </form>
+  
+  <div *ngIf="notificationMessage" class="notification-popup">
+    <p>{{ notificationMessage }}</p>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background: linear-gradient(45deg, #ff0099, #6a00f4, #0044ff);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animación del fondo degradado */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor principal */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Encabezado */
+header h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+header p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+/* Sección del carrusel */
+.carousel-section {
+  position: relative;
+}
+
+/* Contenedor del carrusel */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Carrusel y slides */
+.carousel {
+  display: flex;
+  transition: transform 1s ease;
+}
+
+.slides {
+  display: flex;
+}
+
+.slides img {
+  width: 100%;
+  flex-shrink: 0;
+  transition: filter 0.5s ease;
+}
+
+/* Efecto brillo al pasar el ratón */
+.slides img:hover {
+  filter: brightness(1.1) contrast(1.05);
+}
+
+/* Indicadores (dots) */
+.controls {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active,
+.dot:hover {
+  background: #fff;
+  transform: scale(1.2);
+}

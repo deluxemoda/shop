@@ -1,0 +1,775 @@
+/* base style */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1 {
+  color: #ccc;
+  font-weight: 300;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+figure {
+  margin: auto;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  background: white;
+  margin-bottom: 300px;
+}
+
+.content article {
+  padding: 100px 0;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.content article p {
+  margin-top: 20px;
+}
+
+/* Paralax */
+.bird-box {
+  position: relative;
+  height: 200px;
+  background: url("https://i.postimg.cc/0QxwykXH/papers-co-so96-blur-gradation-blue-pink-3840x2400.jpg") top center no-repeat;
+  background-size: cover; /* Ahora cubre toda la pantalla horizontalmente */
+  background-attachment: fixed;
+  overflow: hidden;
+  
+  margin: 0 auto;      /* Centrado horizontal */
+  text-align: center;
+  max-width: 145cap;   
+ 
+}
+
+
+.logo {
+  height: 200px;
+  /* Aumenta la altura */
+  width: 100%;
+  background: url("https://i.postimg.cc/wBbTt6R0/IMG-20250325-WA0023-removebg-preview.png") center no-repeat;
+  background-size: contain;
+  /* Mantiene la imagen completa sin recortar */
+  position: absolute;
+  margin-left: -20px;
+ 
+
+}
+
+.fore-bird {
+  height: 733px;
+  width: 960px;
+  background: url("https://raw.githubusercontent.com/DevTips/Parallax-on-the-Web-DevTips-/master/images/fore-bird.png") right bottom no-repeat;
+  position: absolute;
+  left: 50%;
+  margin-left: -480px;
+  top: 380px;
+  /*   background-color: rgba(0,0,0,0.4); */
+}
+
+.back-bird {
+  width: 960px;
+  height: 298px;
+  background: url("https://github.com/DevTips/Parallax-on-the-Web-DevTips-/blob/master/images/back-bird.png?raw=true") top left no-repeat;
+  /*   background-color: rgba(0,0,0,0.4); */
+  position: absolute;
+  left: 50%;
+  margin-left: -480px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Para pantallas más pequeñas (menos de 768px) */
+@media (max-width: 768px) {
+
+
+  .fore-bird {
+    width: 960px;
+    height: 200px;
+    background: url(https://raw.githubusercontent.com/DevTips/Parallax-on-the-Web-DevTips-/master/images/fore-bird.png) no-repeat;
+    background-position: right bottom;
+    position: absolute;
+    left: 0%;
+    margin-left: -510px;
+    top: 380px;
+  }
+}
+
+
+/* Model Grid */
+.clothes-pics {
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+img {
+  display: block;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+
+figure {
+  margin-bottom: 20px;
+  position: relative;
+  opacity: 0;
+
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+figure.is-showing {
+  opacity: 1;
+  transform: translateX(0px);
+}
+
+figure:hover>figcaption {
+  left: 0;
+}
+
+figure:hover>img {
+  transform: scale(1.2);
+}
+
+figcaption {
+  position: absolute;
+  bottom: 10px;
+  left: -100%;
+  background: #000;
+  color: white;
+  padding: 2px 8px;
+  font-size: 11px;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+
+.clothes-pics {
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.clothes-pics figure {
+  margin-bottom: 0; /* se usa el gap del grid */
+}
+
+.clothes-pics figure img {
+  width: 100%;       /* la imagen ocupa el ancho completo de la celda */
+  max-width: none;   /* elimina restricciones para que se ajuste al grid */
+  height: auto;
+}
+
+.clothes-pics figcaption {
+  bottom: 5px;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.clothes-pics figure:hover img {
+  transform: scale(1.05); /* menor zoom en dispositivos móviles */
+}
+
+
+
+
+
+
+
+/* Estilos para dispositivos móviles: dos columnas y tamaños reducidos */
+@media only screen and (max-width: 768px) {
+  .clothes-pics {
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .clothes-pics figure {
+    margin-bottom: 0; /* se usa el gap del grid */
+  }
+  
+  .clothes-pics figure img {
+    width: 100%;       /* la imagen ocupa el ancho completo de la celda */
+    max-width: none;   /* elimina restricciones para que se ajuste al grid */
+    height: auto;
+  }
+  
+  .clothes-pics figcaption {
+    bottom: 5px;
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+  
+  .clothes-pics figure:hover img {
+    transform: scale(1.05); /* menor zoom en dispositivos móviles */
+  }
+}
+
+
+
+
+
+
+/* Large Window */
+.large-window {
+  height: 640px;
+  background: url("https://github.com/DevTips/Parallax-on-the-Web-DevTips-/blob/master/images/model1.jpg?raw=true");
+  background-position: center top;
+  background-attachment: fixed;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.window-tint {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-text {
+  color: white;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1.2;
+}
+
+.promo-text strong {
+  display: block;
+  font-size: 30px;
+}
+
+.promo-text span {
+  font-weight: 300;
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.window-cta {
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.window-cta:hover {
+  background: white;
+  color: black;
+  text-decoration: none;
+}
+
+/* Posts */
+.blog-posts {
+  margin-top: 100px;
+}
+
+.post {
+  border: 1px solid #e1e1e1;
+  padding: 20px 20px;
+  background: #fff;
+  position: relative;
+}
+
+.post-1 {
+  transform: translate(0px, 20px);
+}
+
+.post-2 {
+  z-index: 2;
+}
+
+.post-3 {
+  transform: translate(-100px, 20px);
+}
+
+.footer {
+  background-color: #f8f8f8;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 220px;
+  margin: 20px 10px;
+}
+
+.footer-column h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.footer-column a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #000;
+}
+
+.security-patch {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 15px;
+  margin-top: 10px;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+.more-link {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.more-link:hover {
+  color: #000;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-column {
+    margin: 20px 0;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
+
+/* Barra de promoción */
+.promo-bar {
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 10px; /* Tamaño no muy alto */
+  position: relative;
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  overflow: hidden; /* Oculta el contenido que se sale de la barra */
+}
+
+
+/* Contenedor del contenido que se moverá (texto e imagen) */
+.promo-content {
+  display: flex;
+  animation: scrollPromo 20s linear infinite; /* Desplazamiento más lento */
+}
+
+/* Imagen al lado izquierdo */
+.promo-image {
+  height: 40px; /* Ajusta el tamaño de la imagen */
+  margin-right: 20px; /* Espacio entre la imagen y el texto */
+}
+
+/* Estilo del texto */
+.promo-text {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem; /* Hacer el texto más grande */
+  white-space: nowrap; /* Impide que el texto se divida en varias líneas */
+  display: inline-block;
+  animation: fadeInOut 4s ease-in-out infinite; /* Desvanecimiento muy rápido */
+}
+
+/* Animación de desvanecimiento del texto */
+@keyframes fadeInOut {
+  0%, 75% {
+      opacity: 1; /* Aparece completamente y permanece visible */
+  }
+  95% {
+      opacity: 0; /* Se desvanece completamente */
+  }
+  100% {
+      opacity: 1; /* Vuelve a ser visible */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Keyframes para pantallas grandes (desktop) */
+@keyframes scrollPromo {
+  0% {
+      transform: translateX(100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Keyframes para móviles: inicia menos a la derecha */
+@keyframes scrollPromoMobile {
+  0% {
+      transform: translateX(25%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Animación para el contenido de la promoción */
+.promo-content {
+  display: flex;
+  animation: scrollPromo 20s linear infinite; /* Versión desktop */
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 600px) {
+  .promo-content {
+    animation: scrollPromoMobile 20s linear infinite;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(1, 1);
+  }
+  to {
+    -webkit-transform: scale(1.5, 1.5);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(1.5, 1.5);
+  }
+}
+
+.zoom-img {
+  -webkit-animation: zoom 20s;
+  animation: zoom 20s;
+}
+
+
+/* Controlar el tamaño del carrusel */
+ngb-carousel {
+  height: 400px; /* Ajusta la altura del carrusel */
+  width: 100%;   /* El ancho será 100% del contenedor */
+  overflow: hidden; /* Para asegurarse de que las imágenes no se desborden */
+}
+
+/* Controlar las imágenes dentro del carrusel */
+.zoom-img {
+  object-fit: cover; /* Esto hace que la imagen se recorte si es necesario para que cubra todo el contenedor */
+  height: 100%; /* La imagen tendrá la altura total del carrusel */
+  width: 100%;  /* La imagen ocupará el 100% del ancho */
+}
+
+/* Si deseas ajustar el tamaño del carrusel de manera más precisa */
+ngb-carousel .carousel-inner {
+  height: 100%; /* Asegura que las imágenes se ajusten correctamente dentro del carrusel */
+  
+}
+
+
+
+
+.mimo {
+  margin: 0 auto;      /* Centrado horizontal */
+  text-align: center;
+  max-width: 145cap;      /* Ajusta el ancho según necesites */
+}
+
+.mimo a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+@media (max-width: 1100px) {
+  
+
+  .mimo {
+    margin: 1rem auto;
+    padding: 0 1rem;
+    border-radius: 20px; /* Ajusta el radio según tu preferencia */
+    overflow: hidden; /* Para que las imágenes no sobresalgan de los bordes */
+    display: block;
+    max-width: 100%; /* Ajusta el ancho si es necesario */
+  }
+  .bird-box {
+ margin: 1rem auto;
+    padding: 0 1rem;
+    overflow: hidden; /* Para que las imágenes no sobresalgan de los bordes */
+    max-width: 94%; 
+   
+  }
+
+ 
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+  
+  ngb-carousel {
+    height: 250px;
+  }
+  }
+
+
+/* ----------------------------- */
+/* Estilos generales para ambos   */
+/* ----------------------------- */
+.menu-carousel {
+  margin: 20px auto;
+  position: relative;
+  background: linear-gradient(to right, #f1c3da, #caa0f5, #fbc2eb);
+ 
+  padding: 0 1rem;
+  overflow: hidden; /* Para que las imágenes no sobresalgan de los bordes */
+  max-width: 145cap;
+}
+
+/* Estilo común a cada card */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  margin: 50PX!important;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.option-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.category-card h5 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.category-card p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ----------------------------- */
+/* Desktop Carousel: 3 cards por slide */
+/* ----------------------------- */
+.desktop-carousel {
+  display: block;
+}
+
+.desktop-carousel .desktop-slide {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.desktop-carousel .category-card {
+  max-width: 300px;
+  height: 300px;
+}
+
+/* ----------------------------- */
+/* Mobile Carousel: 1 card por slide */
+/* ----------------------------- */
+.mobile-carousel {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-carousel {
+    display: none;
+  }
+  .mobile-carousel {
+    display: block;
+  }
+  .mobile-carousel .category-card {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+  }
+  .option-image {
+    width: 80px;
+    height: 80px;
+  }
+  .category-card h5 {
+    font-size: 18px;
+  }
+  .category-card p {
+    font-size: 14px;
+  }
+ 
+}
+
+.menu-carousel a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+@media (max-width: 1100px) {
+  
+
+  .menu-carousel {
+    margin: 1rem auto;
+    padding: 0 1rem;
+    
+    overflow: hidden; /* Para que las imágenes no sobresalgan de los bordes */
+    max-width: 93%;
+    min-height: 300PX!important;
+  }
+
+
+  
+  /* Estilo común a cada card */
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    margin: 20PX!important;
+  }
+ 
+  }

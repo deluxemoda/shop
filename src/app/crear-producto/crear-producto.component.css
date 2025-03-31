@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.crear-producto { 
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffffff, #f7f7f7);
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.crear-producto h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.crear-producto form > div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.crear-producto label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.crear-producto input,
+.crear-producto textarea,
+.crear-producto select {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    background-color: #fff;
+}
+
+.crear-producto input:focus,
+.crear-producto textarea:focus,
+.crear-producto select:focus {
+    border-color: #28a745;
+    box-shadow: 0px 0px 8px rgba(40, 167, 69, 0.2);
+}
+
+.crear-producto textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.crear-producto button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.crear-producto button:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+}
+
+.crear-producto button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.notification {
+    margin-top: 20px;
+    padding: 12px;
+    text-align: center;
+    background-color: #e2f0d9;
+    border: 1px solid #b5d6a6;
+    border-radius: 6px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Notificación estilo popup */
+.notification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .notification-popup.hide {
+    opacity: 0;
+  }
+  
+
+/* Animación sutil */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.crear-producto form > div {
+    animation: fadeIn 0.3s ease-in-out;
+}

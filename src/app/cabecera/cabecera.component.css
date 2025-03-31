@@ -1,0 +1,79 @@
+/* Font Awesome Icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');/* Reset margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Apply gray background to the body */
+  body {
+  
+    font-family: Arial, sans-serif;
+    padding-top: 40px; /* Ajusta el espacio para el encabezado más delgado */
+  }
+  
+  /* Header Styles */
+  
+  /* Header Styles */
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #f3f6fd; /* Color de respaldo */  
+    background-image: url('https://cdn.vectorstock.com/i/preview-1x/08/33/texture-military-camouflage-seamless-pattern-vector-42970833.jpg');
+    background-repeat: repeat;         /* Se duplicará */  
+    background-size: 200px auto;         /* La imagen se reduce a 100px de ancho, ajusta según convenga */  
+    background-position: center;         /* Opcional: centra la imagen */  
+    padding: 6.5px 10px;                /* Ajusta el padding según necesites */  
+    color: #ffffff;                     /* Color del texto */  
+    z-index: 1000;                      /* Para que el header se muestre encima */  
+  }
+  
+  
+  /* Avatar styles */
+  .header-left .avatar {
+    width: 25px; /* Hacemos el avatar aún más pequeño */
+    height: 25px; /* Hacemos el avatar aún más pequeño */
+    border-radius: 50%;
+  }
+  
+  
+  /* Header-right styles */
+  .header-right {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el avatar e íconos */
+    gap: 22px; /* Espaciado entre los elementos */
+  }
+  
+  /* Avatar styles */
+  .header-right .avatar {
+    width: 25px; /* Tamaño del avatar */
+    height: 25px; /* Tamaño del avatar */
+    border-radius: 50%; /* Hace el avatar circular */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadimos una transición para suavizar el efecto */
+  }
+  
+  /* Efecto al pasar el mouse */
+  .header-right .avatar:hover {
+    transform: scale(1.4); /* Aumenta el tamaño del avatar */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidad */
+  }
+  
+  /* Icon styles */
+  .icon {
+    color: #ffffff;
+    font-size: 14px; /* Íconos aún más pequeños */
+    text-decoration: none;
+  }
+  
+  .header-right .icon:hover {
+    transform: scale(1.3); /* Agranda el ícono */
+    transition: transform 0.3s ease; /* Suaviza la animación */
+  }
+  
+  

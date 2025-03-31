@@ -1,0 +1,107 @@
+/* Font Awesome Icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 34px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255); 
+    padding: 6.5px 10px; /* Ajusta el padding según necesites */  
+    color: #ffffff; /* Color del texto */  
+    z-index: 1000; 
+    margin-top: 34px;
+    /* Para que el header se muestre encima */  
+}
+
+/* Contenedor de imagen y título */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Título */
+.titulo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100; /* Estilo delgado */
+    font-size: 2rem; /* Ajusta según sea necesario */
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    color: #333;
+    max-width: 90%; /* Para evitar que el texto se corte en pantallas pequeñas */
+}
+
+/* Imagen al lado izquierdo del título */
+.header img {
+    height: 50px; /* Ajusta el tamaño de la imagen */
+    margin-right: 20px; /* Espacio entre la imagen y el título */
+}
+
+/* Botón de ayuda */
+.btn-ayuda {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-ayuda i {
+    font-size: 1.2rem;
+}
+
+.btn-ayuda:hover {
+    border-radius: 5px;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 1100px) {
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 36px;
+        margin-top: 36px;
+    }
+    
+    .titulo {
+        font-size: 1.5rem; /* Ajusta según sea necesario */
+    }
+    
+    .btn-ayuda {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .btn-ayuda span {
+        display: none; /* Oculta el texto en móviles */
+    }
+
+    .btn-ayuda i {
+        font-size: 1.5rem;
+    }
+}
