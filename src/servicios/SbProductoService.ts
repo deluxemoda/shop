@@ -65,24 +65,128 @@ export class SbProductoService {
 
 
    
-   async createProducto(producto: any): Promise<any> {
-    const { data, error } = await this.supabase
+   async createProductoConTallas(producto: any, tallas: { idtalla: number; cantidad: number }[]): Promise<any> {
+    // Insertar el producto y obtener su id
+    const { data: productoData, error: productoError } = await this.supabase
       .from('productos')
-      .insert(producto);
-    if (error) {
-      console.error("Error al crear producto:", error);
-      return { success: false, message: "❌ Exito al crear producto" };
+      .insert(producto)
+      .select('id')  // Solicita el id generado
+      .single();     // Dado que es un solo producto
+  
+    if (productoError) {
+      console.error("Error al crear producto:", productoError);
+      return { success: false, message: "❌ Error al crear producto" };
     }
-    return { success: true, message: "✅ Producto creado exitosamente" };
+  
+    // Extraer el id del producto insertado
+    const idProducto = productoData.id;
+  
+    // Preparar los datos para la tabla intermedia
+    const datosIntermedios = tallas.map((talla) => ({
+      idproducto: idProducto,
+      idtalla: talla.idtalla,
+      cantidad: talla.cantidad
+    }));
+  
+    // Insertar datos en la tabla intermedia
+    const { data: interData, error: interError } = await this.supabase
+      .from('productotalla')  // Cambia el nombre por el de tu tabla intermedia
+      .insert(datosIntermedios);
+  
+    if (interError) {
+      console.error("Error al insertar datos en tabla intermedia:", interError);
+      return { success: false, message: "❌ Error al insertar datos en tabla intermedia" };
+    }
+  
+    return {
+      success: true,
+      message: "✅ Producto y datos intermedios creados exitosamente",
+      id: idProducto
+    };
   }
+
+
+
+
+  
+  async updateProductoConTallas(producto: any, tallas: { idtalla: number; cantidad: number }[]): Promise<any> {
+    // Actualizar el producto en la tabla 'productos'
+    const { data: productoData, error: productoError } = await this.supabase
+      .from('productos')
+      .update(producto)
+      .eq('id', producto.id);
+  
+    if (productoError) {
+      console.error("Error al actualizar producto:", productoError);
+      return { success: false, message: "❌ Error al actualizar el producto" };
+    }
+  
+    // Eliminar registros antiguos en la tabla intermedia para evitar inconsistencias
+    const { error: deleteError } = await this.supabase
+      .from('productotalla')  // Cambia al nombre real de tu tabla intermedia
+      .delete()
+      .eq('idproducto', producto.id);
+  
+    if (deleteError) {
+      console.error("Error al eliminar registros antiguos en tabla intermedia:", deleteError);
+      return { success: false, message: "❌ Error al actualizar las tallas del producto" };
+    }
+  
+    // Insertar los nuevos registros en la tabla intermedia
+    const datosIntermedios = tallas.map((talla) => ({
+      idproducto: producto.id,
+      idtalla: talla.idtalla,
+      cantidad: talla.cantidad
+    }));
+  
+    const { error: insertError } = await this.supabase
+      .from('productotalla')  // Cambia al nombre real de tu tabla intermedia
+      .insert(datosIntermedios);
+  
+    if (insertError) {
+      console.error("Error al insertar datos en tabla intermedia:", insertError);
+      return { success: false, message: "❌ Error al actualizar las tallas del producto" };
+    }
+  
+    return { success: true, message: "✅ Producto y tallas actualizados exitosamente" };
+  }
+  
+
+
+
+
+
+
   async eliminarProducto(id: number): Promise<boolean> {
-    const { error } = await this.supabase.from('productos').delete().eq('id', id);
-    if (error) {
-      console.error("Error al eliminar producto:", error);
+    // Eliminar registros en la tabla intermedia relacionados con el producto
+    const { error: deleteInterError } = await this.supabase
+      .from('tabla_intermedia')  // Cambia al nombre real de tu tabla intermedia
+      .delete()
+      .eq('idproducto', id);
+  
+    if (deleteInterError) {
+      console.error("Error al eliminar registros en tabla intermedia:", deleteInterError);
       return false;
     }
+  
+    // Eliminar el producto de la tabla 'productos'
+    const { error: deleteProductError } = await this.supabase
+      .from('productos')
+      .delete()
+      .eq('id', id);
+  
+    if (deleteProductError) {
+      console.error("Error al eliminar producto:", deleteProductError);
+      return false;
+    }
+  
     return true;
   }
+  
+
+
+
+
   async getProductoById(id: number): Promise<any> {
     const { data, error } = await this.supabase
       .from('productos')
@@ -96,17 +200,24 @@ export class SbProductoService {
     return data;
   }
 
-  async updateProducto(producto: any): Promise<any> {
+
+
+
+  async getTallasByProductoId(idProducto: number): Promise<any[]> {
     const { data, error } = await this.supabase
-      .from('productos')
-      .update(producto)
-      .eq('id', producto.id);
-      
+      .from('productotalla') // Cambia al nombre real de tu tabla intermedia
+      .select('*')
+      .eq('idproducto', idProducto);
+  
     if (error) {
-      console.error("Error al actualizar producto:", error);
-      return { success: false, message: "❌ Error al actualizar el producto" };
+      console.error("Error al obtener tallas del producto:", error);
+      return [];
     }
-    return { success: true, message: "✅ Producto actualizado exitosamente" };
+  
+    return data;
   }
+  
+
+  
   
 }

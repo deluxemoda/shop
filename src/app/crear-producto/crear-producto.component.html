@@ -10,24 +10,21 @@
       <textarea name="descripcion" [(ngModel)]="nuevoProducto.descripcion" required></textarea>
     </div>
     <div>
-      <label>Talla:</label>
-      <select name="idtalla" [(ngModel)]="nuevoProducto.idtalla" required>
-        <option value="" disabled selected>Seleccione una talla</option>
-        <option *ngFor="let talla of tallas" [value]="talla.id">{{ talla.nombre }}</option>
-      </select>
-    </div>
-    <div>
       <label>Categoría:</label>
       <select name="idcategoria" [(ngModel)]="nuevoProducto.idcategoria" required>
         <option value="" disabled selected>Seleccione una categoría</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.nombre }}
+        </option>
       </select>
     </div>
     <div>
       <label>Tipo:</label>
       <select name="idtipo" [(ngModel)]="nuevoProducto.idtipo" required>
         <option value="" disabled selected>Seleccione un tipo</option>
-        <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</option>
+        <option *ngFor="let tipo of tipos" [value]="tipo.id">
+          {{ tipo.nombre }}
+        </option>
       </select>
     </div>
     <div>
@@ -46,12 +43,18 @@
       <label>Color:</label>
       <select name="idcolor" [(ngModel)]="nuevoProducto.idcolor" required>
         <option value="" disabled selected>Seleccione un color</option>
-        <option *ngFor="let color of colores" [value]="color.id">{{ color.nombre }}</option>
+        <option *ngFor="let color of colores" [value]="color.id">
+          {{ color.nombre }}
+        </option>
       </select>
     </div>
     <div>
-      <label>Cantidad:</label>
-      <input type="number" name="cantidad" [(ngModel)]="nuevoProducto.cantidad" required>
+      <label>Código:</label>
+      <input type="number" name="codigo" [(ngModel)]="nuevoProducto.codigo">
+    </div>
+    <div>
+      <label>Seleccionado:</label>
+      <input type="checkbox" name="seleccionado" [(ngModel)]="nuevoProducto.seleccionado">
     </div>
     <div>
       <label>Imagen 1 (URL):</label>
@@ -61,12 +64,92 @@
       <label>Imagen 2 (URL):</label>
       <input type="text" name="urlimagen2" [(ngModel)]="nuevoProducto.urlimagen2">
     </div>
+   
+
+
+
+
+
+
+    <h3>Tallas y Cantidades</h3>
+    <!-- Formulario para agregar o editar una talla -->
+    <form #tallaForm="ngForm" (ngSubmit)="agregarOActualizarTalla()">
+      <div>
+        <label>Talla:</label>
+        <select name="idtalla" [(ngModel)]="nuevaTalla.idtalla" required>
+          <option [ngValue]="null" disabled selected>Seleccione una talla</option>
+          <option *ngFor="let talla of tallas" [ngValue]="talla.id">
+            {{ talla.nombre }}
+          </option>
+        </select>
+        
+      </div>
+      <div>
+        <label>Cantidad:</label>
+        <input type="number" name="cantidad" [(ngModel)]="nuevaTalla.cantidad" placeholder="Cantidad" required>
+      </div>
+      <div>
+        <button type="submit">
+          {{ editandoTalla ? 'Actualizar' : 'Agregar' }}
+        </button>
+        <button *ngIf="editandoTalla" type="button" (click)="cancelarEdicion()">Cancelar</button>
+      </div>
+    </form>
+  
+    <!-- Tabla que muestra las tallas agregadas -->
+    <table>
+      <thead>
+        <tr>
+          <th>Talla</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tallasProducto; let i = index">
+          <td>{{ obtenerNombreTalla(item.idtalla) }}</td>
+          <td>{{ item.cantidad }}</td>
+          <td>
+            <button type="button" (click)="editarTalla(item, i)">Editar</button>
+            <button type="button" (click)="eliminarTalla(i)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
     <button type="submit" [disabled]="!productoForm.form.valid">
       {{ productoId ? 'Actualizar Registro' : 'Crear Producto' }}
     </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </form>
   
   <div *ngIf="notificationMessage" class="notification-popup">
     <p>{{ notificationMessage }}</p>
   </div>
 </div>
+
+
+  
+
+
